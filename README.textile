@@ -1,0 +1,12 @@
+h1. Examples for MongoDB
+
+These are examples used in my mongodb presentations.
+
+There will be more documentation in here later.
+
+h2. Requirements
+
+* Ruby 1.9.2 (use rvm)
+* Gems: mongo, mongoid --pre, mongo_mapper, candy
+
+
