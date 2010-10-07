@@ -1,8 +1,16 @@
 require 'example_helper'
 require 'mongo_mapper'
 
-MongoMapper.connection = @connection
-MongoMapper.database = "test"
+
+MongoMapper.setup({ 
+  "development" => {
+    "host" => 'localhost',
+    "port" => 27017,
+    "database" => 'test'
+  }
+}, "development")
+
+#MongoMapper.database = "test"
 
 class Person
   include MongoMapper::Document

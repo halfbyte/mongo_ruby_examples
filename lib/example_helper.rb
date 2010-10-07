@@ -5,9 +5,12 @@ require 'mongo'
 require 'faker'
 
 FAKE_TAGS = ['cool', 'dumb', 'foo', 'bar', 'stupid', 'weird']
-
-@connection = Mongo::Connection.new
-@db = @connection.db("test")
+begin
+  @connection = Mongo::Connection.new
+  @db = @connection.db("test")
+rescue Mongo::ConnectionFailure => e
+  puts "no default config. Might be fatal."  
+end
 
 ###
 
@@ -42,7 +45,9 @@ def create_fake_entries
         :zip => Faker::Address.zip_code,
         :country => "Fakistan"
       },
-      :tags => FAKE_TAGS.shuffle[0,2]
+      :latlng => [53.593978, 10.107380],
+      :tags => FAKE_TAGS.shuffle[0,2],
+      :created_at => (Date.today - (rand*30).to_i).to_time
     })
   end
 end

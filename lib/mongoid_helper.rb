@@ -8,7 +8,7 @@ end
 class Person
   include Mongoid::Document
   field :name
-  embeds  _one :address
+  embeds_one :address
   field :tags, :type => Array
 end
 

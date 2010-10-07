@@ -2,7 +2,11 @@ require 'example_helper'
 create_fake_entries
 
 ###
-@db['people'].find(:tags => {"$in" => ['cool']}).each do |doc|
+@db['people'].find(
+  :tags => {
+    "$in" => ['cool', 'weird']
+  }
+).each do |doc|
   puts doc.inspect
 end
 
@@ -20,8 +24,12 @@ obj = {
 }
 ###
 
-@db['people'].find("address.city" => /haven/).each do |doc|
+@db['people'].find("address.city" => "Berlin").each do |doc|
   puts doc.inspect
 end
 
 ###
+
+@db['people'].find("address.city" => /haven/).each do |doc|
+  puts doc.inspect
+end
